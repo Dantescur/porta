@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
 import mdx from "@astrojs/mdx";
-import node from "@astrojs/node";
+// import node from "@astrojs/node";
 
 import icon from "astro-icon";
 
@@ -18,7 +18,7 @@ export default defineConfig({
     }),
   ],
 
-  adapter: node({
-    mode: "standalone",
-  }),
+  // adapter: node({
+  //   mode: "standalone",
+  // }),
 });
