@@ -1,0 +1,37 @@
+---
+import "../assets/base.css";
+import Nav from "../components/Nav.astro";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+
+    <!-- <script is:inline>
+      const storedTheme =
+        localStorage.getItem("theme") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      document.documentElement.classList.toggle("dark", storedTheme === "dark"); -->
+  </head>
+
+  <body class="min-h-screen antialiased">
+    <Nav />
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <slot />
+    </main>
+  </body>
+  <!-- <body class="min-h-screen antialiased">
+    <Nav />
+    <main class="mx-auto max-w-7xl px-6 lg:px-8">
+      <slot />
+    </main>
+  </body> -->
+</html>

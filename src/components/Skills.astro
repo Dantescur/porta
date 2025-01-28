@@ -1,0 +1,53 @@
+---
+import { Icon } from "astro-icon/components";
+
+const skills = [
+  { name: "JavaScript", level: 80, icon: "javascript" },
+  { name: "TypeScript", level: 90, icon: "typescript" },
+  { name: "HTML", level: 95, icon: "html" },
+  { name: "CSS", level: 80, icon: "css" },
+  { name: "Node.js", level: 70, icon: "nodejs" },
+  { name: "Git", level: 85, icon: "git" },
+  { name: "Astro", level: 75, icon: "astro" },
+  { name: "Tailwind", level: 65, icon: "tailwind" },
+  { name: "Vue", level: 90, icon: "vue" },
+  { name: "Postgres", level: 60, icon: "postgres" },
+  { name: "Express", level: 85, icon: "express" },
+  { name: "AdonisJS", level: 75, icon: "adonisjs" },
+];
+---
+
+<section id="skills" class="py-16 sm:py-20">
+  <div class="container px-6 sm:px-8 lg:px-12">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 gradient-text text-center">
+      Technical Arsenal
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+      {skills.map((skill, index) => (
+        <div class="rounded-xl bg-surface p-4 sm:p-6 border border-border/20 hover:border-accent/30 transition-colors shadow-theme hover:shadow-theme even:bg-primary/5">
+          <div class="flex items-center gap-3 sm:gap-4">
+            <Icon name={skill.icon} class="text-2xl sm:text-3xl text-accent" />
+            <div class="flex-1">
+              <h3 class="text-base sm:text-lg font-medium text-text">
+                {skill.name}
+              </h3>
+              
+              <!-- Skill Progress with Percentage -->
+              <div class="mt-2 flex items-center justify-between">
+                <div class="h-2 w-[calc(100%-3rem)] rounded-full bg-primary/10">
+                  <div
+                    class="h-full rounded-full bg-gradient-to-r from-accent/80 to-accent transition-all duration-1000"
+                    style={`width: ${skill.level}%`}
+                    data-skill-level
+                  />
+                </div>
+                <span class="text-sm text-text/70 ml-2">{skill.level}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,89 @@
+---
+import { Icon } from "astro-icon/components";
+const links = [
+  { name: "Project", href: "#work" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
+];
+---
+
+<div class="sticky top-0 backdrop-blur-md z-50">
+  <div
+    class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex justify-between items-center"
+  >
+    <a href="/" class="text-xl sm:text-2xl font-bold gradient-text">CDaniel</a>
+
+    <button class="md:hidden p-2" id="mobile-menu-button">
+      <Icon name="heroicons:bars-3-20-solid" class="w-6 h-6" />
+    </button>
+
+    <div class="hidden md:flex gap-6 lg:gap-8 items-center">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm lg:text-base text-accent hover:text-accent/80 transition-colors"
+          >
+            {link.name}
+          </a>
+        ))
+      }
+      <button
+        id="theme-toggle"
+        aria-label="Toggle dark mode"
+        class="ml-2 lg:ml-4 p-2 rounded-lg hover:bg-primary/10 transition-colors"
+      >
+        <Icon
+          name="heroicons:sun-20-solid"
+          class="w-5 h-5 lg:w-6 lg:h-6 hidden dark:block"
+          aria-hidden="true"
+        />
+        <Icon
+          name="heroicons:moon-20-solid"
+          class="w-5 h-5 lg:w-6 lg:h-6 block dark:hidden"
+          aria-hidden="true"
+        />
+      </button>
+    </div>
+  </div>
+
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-4 pt-2 pb-4 space-y-2">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="block px-4 py-2 text-sm text-text hover:bg-primary/10 rounded-lg"
+          >
+            {link.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const themeToggle = document.getElementById("theme-toggle");
+  const htmlEl = document.documentElement;
+
+  const storedTheme =
+    localStorage.getItem("theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light");
+
+  htmlEl.classList.toggle("dark", storedTheme === "dark");
+
+  themeToggle.addEventListener("click", () => {
+    const isDark = htmlEl.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  mobileMenuButton.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
