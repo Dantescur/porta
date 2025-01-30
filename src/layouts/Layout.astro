@@ -3,8 +3,8 @@ import "@fontsource-variable/inter";
 import "@fontsource/fira-code";
 import interVariable from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
 import "../assets/base.css";
-import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 
 const { title } = Astro.props;
 ---
@@ -27,7 +27,7 @@ const { title } = Astro.props;
   </head>
 
   <body class="min-h-screen antialiased">
-    <Nav />
+    <Header />
     <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <slot />
     </main>

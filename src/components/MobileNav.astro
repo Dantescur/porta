@@ -1,0 +1,45 @@
+---
+import { Icon } from "astro-icon/components";
+const props = Astro.props;
+const links = props.links as { name: string; href: string }[];
+---
+
+<div
+  class="md:hidden hidden transition-all duration-300 ease-in-out"
+  id="mobile-menu"
+>
+  <div class="px-4 pt-2 pb-4 space-y-2">
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          class="block px-4 py-2 text-sm text-text hover:bg-primary/10 rounded-lg"
+        >
+          {link.name}
+        </a>
+      ))
+    }
+    <!-- Mobile Theme Toggle -->
+    <div class="pt-4 border-t border-border/20">
+      <button
+        id="mobile-theme-toggle"
+        aria-label="Toggle dark mode"
+        class="w-full flex items-center justify-between px-4 py-2 text-sm text-text hover:bg-primary/10 rounded-lg"
+      >
+        <span>Theme</span>
+        <div class="flex items-center gap-2">
+          <Icon
+            name="heroicons:sun-20-solid"
+            class="w-5 h-5 hidden dark:block"
+            aria-hidden="true"
+          />
+          <Icon
+            name="heroicons:moon-20-solid"
+            class="w-5 h-5 block dark:hidden"
+            aria-hidden="true"
+          />
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

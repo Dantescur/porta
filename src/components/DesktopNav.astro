@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+const props = Astro.props;
+const links = props.links as { name: string; href: string }[];
+---
+
+<div class="hidden md:flex gap-6 lg:gap-8 items-center">
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        class="text-sm lg:text-base text-accent hover:text-accent/80 transition-colors"
+      >
+        {link.name}
+      </a>
+    ))
+  }
+  <!-- Theme Toggle -->
+  <button
+    id="theme-toggle"
+    aria-label="Toggle dark mode"
+    class="ml-2 lg:ml-4 p-2 rounded-lg hover:bg-primary/10 transition-colors"
+  >
+    <Icon
+      name="heroicons:sun-20-solid"
+      class="w-5 h-5 lg:w-6 lg:h-6 hidden dark:block"
+      aria-hidden="true"
+    />
+    <Icon
+      name="heroicons:moon-20-solid"
+      class="w-5 h-5 lg:w-6 lg:h-6 block dark:hidden"
+      aria-hidden="true"
+    />
+  </button>
+</div>
