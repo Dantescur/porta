@@ -1,20 +1,36 @@
 ---
 import { Icon } from "astro-icon/components";
 
+import { Image } from "astro:assets"
+
+import jsLogo from "../icons/javascript.svg"
+import tsLogo from "../icons/typescript.svg"
+import htmlLogo from "../icons/html.svg"
+import cssLogo from "../icons/css.svg"
+import nodeJsLogo from "../icons/nodejs.svg"
+import gitLogo from "../icons/git.svg"
+import astroLogo from "../icons/astro.svg"
+import tailwindLogo from "../icons/tailwind.svg"
+import vueLogo from "../icons/vue.svg"
+import postgresLogo from "../icons/postgres.svg"
+import expressLogo from "../icons/express.svg"
+import adonisjsLogo from "../icons/adonisjs.svg"
+
 const skills = [
-  { name: "JavaScript", level: 80, icon: "javascript" },
-  { name: "TypeScript", level: 90, icon: "typescript" },
-  { name: "HTML", level: 95, icon: "html" },
-  { name: "CSS", level: 80, icon: "css" },
-  { name: "Node.js", level: 70, icon: "nodejs" },
-  { name: "Git", level: 85, icon: "git" },
-  { name: "Astro", level: 75, icon: "astro" },
-  { name: "Tailwind", level: 65, icon: "tailwind" },
-  { name: "Vue", level: 90, icon: "vue" },
-  { name: "Postgres", level: 60, icon: "postgres" },
-  { name: "Express", level: 85, icon: "express" },
-  { name: "AdonisJS", level: 75, icon: "adonisjs" },
+  { name: "JavaScript", level: 80, icon: jsLogo },
+  { name: "TypeScript", level: 90, icon: tsLogo },
+  { name: "HTML", level: 95, icon: htmlLogo },
+  { name: "CSS", level: 80, icon: cssLogo },
+  { name: "Node.js", level: 70, icon: nodeJsLogo },
+  { name: "Git", level: 85, icon: gitLogo },
+  { name: "Astro", level: 75, icon: astroLogo },
+  { name: "Tailwind", level: 65, icon: tailwindLogo },
+  { name: "Vue", level: 90, icon: vueLogo },
+  { name: "Postgres", level: 60, icon: postgresLogo },
+  { name: "Express", level: 85, icon: expressLogo },
+  { name: "AdonisJS", level: 75, icon: adonisjsLogo },
 ];
+
 ---
 
 <section id="skills" class="py-16 sm:py-20">
@@ -24,10 +40,10 @@ const skills = [
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-      {skills.map((skill, index) => (
-        <div class="rounded-xl bg-surface p-4 sm:p-6 border border-border/20 hover:border-accent/30 transition-colors shadow-theme hover:shadow-theme even:bg-primary/5">
+      {skills.map((skill, _index) => (
+        <div class="rounded-xl bg-surface p-4 sm:p-6 border border-border/20 hover:border-accent/30 transition-colors shadow-theme hover:shadow-theme even:bg-primary/5 font-mono">
           <div class="flex items-center gap-3 sm:gap-4">
-            <Icon name={skill.icon} class="text-2xl sm:text-3xl text-accent" />
+            <Image src={skill.icon} class="text-2xl sm:text-3xl text-accent" width="60" height="60" alt={skill.name} />
             <div class="flex-1">
               <h3 class="text-base sm:text-lg font-medium text-text">
                 {skill.name}

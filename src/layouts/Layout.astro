@@ -1,6 +1,10 @@
 ---
+import "@fontsource-variable/inter";
+import "@fontsource/fira-code";
+import interVariable from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
 import "../assets/base.css";
 import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 
 const { title } = Astro.props;
 ---
@@ -11,15 +15,15 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={interVariable}
+      crossorigin="anonymous"
+    />
     <title>{title}</title>
-
-    <!-- <script is:inline>
-      const storedTheme =
-        localStorage.getItem("theme") ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light");
-      document.documentElement.classList.toggle("dark", storedTheme === "dark"); -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
 
   <body class="min-h-screen antialiased">
@@ -27,11 +31,6 @@ const { title } = Astro.props;
     <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <slot />
     </main>
+    <Footer />
   </body>
-  <!-- <body class="min-h-screen antialiased">
-    <Nav />
-    <main class="mx-auto max-w-7xl px-6 lg:px-8">
-      <slot />
-    </main>
-  </body> -->
 </html>

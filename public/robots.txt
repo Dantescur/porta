@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://brawny-range.surge.sh/sitemap-index.xml
