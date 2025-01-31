@@ -14,32 +14,28 @@
 
 @layer base {
   :root {
-    --color-text: 17 17 17;
-    --color-background: 250 250 250;
-    --color-primary: 226 234 252;
-    --color-accent: 255 214 10;
-    --color-surface: 255 255 255;
-    --color-border: 229 229 229;
+    --color-text: 33 33 33; /* Darker text for better contrast */
+    --color-background: 245 245 245; /* Slightly darker background */
+    --color-primary: 200 205 215; /* Softer primary color */
+    --color-accent: 255 214 10; /* Accent remains vibrant */
+    --color-surface: 250 250 250; /* Surface slightly darker than pure white */
+    --color-border: 210 210 210; /* Borders are darker for definition */
   }
-
   .dark {
-    --color-text: 245 245 245;
-    --color-background: 17 17 17;
-    --color-primary: 31 41 55;
-    --color-accent: 99 102 241;
-    --color-surface: 38 38 38;
-    --color-border: 64 64 64;
+    --color-text: 245 245 245; /* Text stays bright in dark mode */
+    --color-background: 17 17 17; /* Background stays dark */
+    --color-primary: 31 41 55; /* Primary color for dark mode */
+    --color-accent: 99 102 241; /* Accent color for dark mode */
+    --color-surface: 38 38 38; /* Surface color for dark mode */
+    --color-border: 64 64 64; /* Border color for dark mode */
   }
-
   html {
     @apply scroll-smooth;
   }
-
   body {
     @apply bg-background text-text;
     font-family: theme("fontFamily.sans");
   }
-
   * {
     @apply transition-colors duration-200 ease-in-out;
   }
@@ -49,39 +45,30 @@
   .skill-card {
     @apply bg-white dark:bg-surface border border-gray-200 dark:border-border/20;
   }
-
   .skill-card:hover {
     @apply border-accent/30 shadow-lg;
   }
-
   .skill-card:nth-child(even) {
     @apply bg-gray-50 dark:bg-primary/5;
   }
-
   .skill-progress {
     @apply bg-primary/10;
   }
-
   .skill-progress-bar {
     @apply bg-gradient-to-r from-accent/80 to-accent transition-all duration-1000;
   }
-
   .skill-percentage {
     @apply text-sm text-text/70;
   }
-
   .project-card {
     @apply bg-surface border border-border/20 hover:border-accent/30 transition-shadow shadow-theme hover:shadow-lg;
   }
-
   .project-image {
     @apply aspect-video overflow-hidden rounded-xl bg-primary/5;
   }
-
   .project-overlay {
     @apply absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end;
   }
-
   .project-tag {
     @apply rounded-full bg-primary/10 px-2.5 py-1 text-xs sm:text-sm font-medium text-text hover:bg-accent/10 transition-colors;
   }
@@ -96,18 +83,15 @@
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
       var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
-
   .shadow-theme:hover {
     --tw-shadow-color: rgba(99, 102, 241, 0.1);
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color),
       0 2px 4px -2px var(--tw-shadow-color);
   }
-
   .dark .shadow-theme {
     --tw-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1),
       0 2px 4px -2px rgba(255, 255, 255, 0.1);
   }
-
   .dark .shadow-theme:hover {
     --tw-shadow-color: rgba(
       99,
@@ -132,4 +116,3 @@ section {
   display: flex;
   justify-content: center;
 }
-

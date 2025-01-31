@@ -1,12 +1,9 @@
-// theme-toggle.ts
-
 export function setupThemeToggle(): void {
-  // Get DOM elements with type assertions
   const themeToggle = document.getElementById(
-    "theme-toggle"
+    "theme-toggle",
   ) as HTMLButtonElement | null;
   const mobileThemeToggle = document.getElementById(
-    "mobile-theme-toggle"
+    "mobile-theme-toggle",
   ) as HTMLButtonElement | null;
   const htmlEl = document.documentElement;
 
@@ -43,12 +40,19 @@ export function setupThemeToggle(): void {
 export function setupMobileMenu(): void {
   // Get DOM elements with type assertions
   const mobileMenuButton = document.getElementById(
-    "mobile-menu-button"
+    "mobile-menu-button",
   )! as HTMLButtonElement;
   const mobileMenu = document.getElementById("mobile-menu")! as HTMLElement;
 
+  const menuOpenIcon = mobileMenuButton.querySelector(
+    '[data-menu-icon="open"]',
+  ) as HTMLElement;
+  const menuCloseIcon = mobileMenuButton.querySelector(
+    '[data-menu-icon="close"]',
+  ) as HTMLElement;
+
   // Ensure elements exist before proceeding
-  if (!mobileMenuButton || !mobileMenu) {
+  if (!mobileMenuButton || !mobileMenu || !menuOpenIcon || !menuCloseIcon) {
     console.error("Mobile menu or button not found in the DOM.");
     return;
   }
@@ -59,6 +63,9 @@ export function setupMobileMenu(): void {
       mobileMenuButton.getAttribute("aria-expanded") === "true";
     mobileMenuButton.setAttribute("aria-expanded", String(!isExpanded));
     mobileMenu.classList.toggle("hidden");
+
+    menuOpenIcon.classList.toggle("hidden", !isExpanded);
+    menuCloseIcon.classList.toggle("hidden", isExpanded);
 
     if (!isExpanded) {
       const firstLink = mobileMenu.querySelector("a");
@@ -80,6 +87,10 @@ export function setupMobileMenu(): void {
     ) {
       mobileMenu.classList.add("hidden");
       mobileMenuButton.setAttribute("aria-expanded", "false");
+
+      // Reset icons
+      menuOpenIcon.classList.remove("hidden");
+      menuCloseIcon.classList.add("hidden");
     }
   });
 
@@ -88,6 +99,11 @@ export function setupMobileMenu(): void {
     if (event.key === "Escape") {
       mobileMenu.classList.add("hidden");
       mobileMenuButton.setAttribute("aria-expanded", "false");
+
+      // Reset icons
+      menuOpenIcon.classList.remove("hidden");
+      menuCloseIcon.classList.add("hidden");
+
       mobileMenuButton.focus();
     }
   });

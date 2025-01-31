@@ -1,7 +1,7 @@
 ---
-import DesktopNav from "./DesktopNav.astro";
-import MobileNav from "./MobileNav.astro";
-import MobileMenuButton from "./MobileMenuButton.astro";
+import DesktopNav from "./navbar/DesktopNav.astro";
+import MobileNav from "./navbar/MobileNav.astro";
+import MobileMenuButton from "./navbar/MobileMenuButton.astro";
 import avatar from "../assets/avataar.svg";
 
 const links = [
@@ -15,8 +15,11 @@ const links = [
   <div
     class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex justify-between items-center"
   >
-    <!-- <a href="/" class="text-xl sm:text-2xl font-bold gradient-text">CDaniel</a> -->
-    <img src={avatar.src} alt="Your Name" class="w-16 h-16 rounded-full" />
+    <img
+      src={avatar.src}
+      alt="Cesar Daniel Avatar"
+      class="w-16 h-16 rounded-full"
+    />
 
     <!-- Mobile Menu Button -->
     <MobileMenuButton />
