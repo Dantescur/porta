@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* inter-latin-wght-normal */
 @font-face {
   font-family: 'Inter Variable';
   font-style: normal;
@@ -14,21 +13,23 @@
 
 @layer base {
   :root {
-    --color-text: 33 33 33; /* Darker text for better contrast */
-    --color-background: 245 245 245; /* Slightly darker background */
-    --color-primary: 200 205 215; /* Softer primary color */
-    --color-accent: 255 214 10; /* Accent remains vibrant */
-    --color-surface: 250 250 250; /* Surface slightly darker than pure white */
-    --color-border: 210 210 210; /* Borders are darker for definition */
+    --color-text: 28 28 28;
+    --color-background: 235 235 235;
+    --color-primary: 160 170 185;
+    --color-accent: 41 128 185;
+    --color-surface: 225 225 225;
+    --color-border: 180 180 180;
   }
+
   .dark {
-    --color-text: 245 245 245; /* Text stays bright in dark mode */
-    --color-background: 17 17 17; /* Background stays dark */
-    --color-primary: 31 41 55; /* Primary color for dark mode */
-    --color-accent: 99 102 241; /* Accent color for dark mode */
-    --color-surface: 38 38 38; /* Surface color for dark mode */
-    --color-border: 64 64 64; /* Border color for dark mode */
+    --color-text: 245 245 245; 
+    --color-background: 17 17 17;
+    --color-primary: 31 41 55; 
+    --color-accent: 99 102 241;
+    --color-surface: 38 38 38; 
+    --color-border: 64 64 64; 
   }
+
   html {
     @apply scroll-smooth;
   }
@@ -43,11 +44,12 @@
 
 @layer components {
   .skill-card {
-    @apply bg-white dark:bg-surface border border-gray-200 dark:border-border/20;
+    @apply bg-white dark:bg-surface border border-border dark:border-border/20 rounded-lg shadow-sm;
   }
   .skill-card:hover {
-    @apply border-accent/30 shadow-lg;
+    @apply border-accent/40 shadow-md transition-all duration-200 ease-in-out;
   }
+
   .skill-card:nth-child(even) {
     @apply bg-gray-50 dark:bg-primary/5;
   }
@@ -102,12 +104,10 @@
   }
 }
 
-/* Improved gradient text */
 .gradient-text {
   @apply bg-gradient-to-r from-accent to-indigo-400 dark:to-accent bg-clip-text text-transparent;
 }
 
-/* Theme-aware shadows */
 .shadow-theme {
   @apply shadow-lg shadow-primary/10 dark:shadow-primary/20;
 }
@@ -115,4 +115,8 @@
 section {
   display: flex;
   justify-content: center;
+}
+
+button {
+  @apply px-4 py-2 rounded-full bg-primary/10 text-sm font-medium text-text/90 hover:bg-accent/10 transition-all;
 }
