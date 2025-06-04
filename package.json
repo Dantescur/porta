@@ -8,8 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "commit": "cz",
-    "release": "standard-version --no-verify",
-    "prepare": "husky"
+    "release": "standard-version --no-verify"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.8",
