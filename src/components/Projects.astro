@@ -1,155 +1,100 @@
 ---
-
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
-const projects = [
+import ProjectGrid from "./ProjectGrid.vue";
+
+export interface Project {
+  title: string;
+  image: string;
+  description: string;
+  tags: string[];
+  extendedDescription: string;
+  link: string;
+  demoLink: string;
+  category: string;
+}
+
+const projects: Project[] = [
   {
     title: "Astro Portfolio",
     image: "https://placehold.co/400",
     description: "A sleek and modern portfolio built with Astro.",
     tags: ["astro", "tailwind", "typescript"],
-    extendedDescription: "This portfolio showcases various projects and skills, built with Astro and styled with Tailwind CSS.",
+    extendedDescription:
+      "This portfolio showcases various projects and skills, built with Astro and styled with Tailwind CSS.",
     link: "https://github.com/dantescur/porta",
     demoLink: "https://brawny-range.surge.sh",
+    category: "Frontend",
   },
   {
     title: "E-commerce Platform",
     image: "https://placehold.co/400",
     description: "A full-featured e-commerce platform with a custom CMS.",
     tags: ["vue", "node", "graphql"],
-    extendedDescription: "An e-commerce platform with a custom CMS, built using Vue, Node.js, and GraphQL for efficient data management.",
+    extendedDescription:
+      "An e-commerce platform with a custom CMS, built using Vue, Node.js, and GraphQL for efficient data management.",
     link: "https://example.com/e-commerce-platform",
     demoLink: "https://example.com/e-commerce-platform/demo",
+    category: "Full Stack",
   },
   {
     title: "Weather App",
     image: "https://placehold.co/400",
     description: "A weather forecasting app with real-time data.",
     tags: ["vue", "typescript", "api"],
-    extendedDescription: "A weather app providing real-time data and forecasts, built with Vue and TypeScript, utilizing various APIs.",
+    extendedDescription:
+      "A weather app providing real-time data and forecasts, built with Vue and TypeScript, utilizing various APIs.",
     link: "https://example.com/weather-app",
     demoLink: "https://example.com/weather-app/demo",
+    category: "Frontend",
   },
   {
     title: "Blog Platform",
     image: "https://placehold.co/400",
     description: "A customizable blog platform with markdown support.",
     tags: ["nuxt", "strapi", "tailwind"],
-    extendedDescription: "A blog platform that supports markdown, built with Nuxt.js and Strapi, and styled with Tailwind CSS.",
+    extendedDescription:
+      "A blog platform that supports markdown, built with Nuxt.js and Strapi, and styled with Tailwind CSS.",
     link: "https://example.com/blog-platform",
     demoLink: "https://example.com/blog-platform/demo",
+    category: "Full Stack",
   },
   {
     title: "Chat Application",
     image: "https://placehold.co/400",
     description: "A real-time chat application with WebSocket integration.",
     tags: ["socket.io", "express", "vue"],
-    extendedDescription: "A chat application that supports real-time communication, built with Socket.io, Express, and Vue.",
+    extendedDescription:
+      "A chat application that supports real-time communication, built with Socket.io, Express, and Vue.",
     link: "https://example.com/chat-application",
     demoLink: "https://example.com/chat-application/demo",
+    category: "Backend",
   },
   {
     title: "Task Manager",
     image: "https://placehold.co/400",
     description: "A task management tool to organize your daily tasks.",
     tags: ["astro", "firebase", "scss"],
-    extendedDescription: "A task management tool to help organize daily tasks, built with Astro, Firebase, and styled with SCSS.",
+    extendedDescription:
+      "A task management tool to help organize daily tasks, built with Astro, Firebase, and styled with SCSS.",
     link: "https://example.com/task-manager",
     demoLink: "https://example.com/task-manager/demo",
+    category: "Frontend",
   },
 ];
 
 const categories = ["Frontend", "Backend", "Full Stack"];
-
 ---
 
 <section id="work" class="py-16 sm:py-20">
   <div class="container px-6 sm:px-8 lg:px-12">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 gradient-text text-center">
+    <h2
+      class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 gradient-text text-center"
+    >
       Featured Work
     </h2>
 
-    <!-- Category Filters -->
-    <div class="flex justify-center gap-4 mb-8">
-      <button class="px-4 py-2 rounded-full bg-primary/10 text-sm font-medium hover:bg-accent/10 transition-colors">
-        All
-      </button>
-      {categories.map((category) => (
-        <button
-          class="px-4 py-2 rounded-full bg-primary/10 text-sm font-medium hover:bg-accent/10 transition-colors"
-        >
-          {category}
-        </button>
-      ))}
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-      {projects.map((project) => (
-        <article
-          class="group relative overflow-hidden rounded-2xl bg-surface p-4 sm:p-6 shadow-theme hover:shadow-lg transition-shadow border border-border/20 hover:border-accent/30"
-        >
-          <!-- Project Image with Skeleton Loading -->
-          <div class="aspect-video overflow-hidden rounded-xl bg-primary/5 animate-pulse">
-            <Image
-              src={project.image}
-              width="400"
-              height="400"
-              alt={project.title}
-              loading="lazy"
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-              onload="this.parentElement.classList.remove('animate-pulse')"
-            />
-          </div>
-
-          <!-- Project Content -->
-          <div
-            class="mt-4 sm:mt-6 group-hover:opacity-0 group-hover:translate-y-2 transition-all duration-300"
-          >
-            <h3 class="text-lg sm:text-xl font-semibold text-text group-hover:text-accent transition-colors">
-              {project.title}
-            </h3>
-            <p class="mt-2 text-sm sm:text-base text-text/70">
-              {project.description}
-            </p>
-
-            <!-- Tags -->
-            <div class="mt-3 sm:mt-4 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span
-                  class="rounded-full bg-primary/10 px-2.5 py-1 text-xs sm:text-sm font-medium text-text hover:bg-accent/10 transition-colors"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <!-- Overlay for Additional Info -->
-          <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-            <h3 class="text-xl font-bold text-text">{project.title}</h3>
-            <p class="mt-2 text-sm text-text/80">{project.extendedDescription}</p>
-
-            <a
-              href={project.link}
-              class="mt-4 inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors"
-            >
-              View Project
-              <Icon name="heroicons:arrow-right-20-solid" class="w-4 h-4" />
-            </a>
-
-            <!-- Live Demo Button -->
-            <a
-            target="_blank"
-              href={project.demoLink}
-              class="mt-2 inline-flex items-center gap-2 text-text hover:text-accent transition-colors"
-            >
-              Live Demo
-              <Icon name="heroicons:play-20-solid" class="w-4 h-4" />
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
+    <ProjectGrid projects={projects} categories={categories} client:load />
   </div>
 </section>
