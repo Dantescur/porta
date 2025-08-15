@@ -17,74 +17,74 @@ export interface Project {
 
 const projects: Project[] = [
   {
-    title: "Astro Portfolio",
-    image: "https://placehold.co/400",
-    description: "A sleek and modern portfolio built with Astro.",
-    tags: ["astro", "tailwind", "typescript"],
-    extendedDescription:
-      "This portfolio showcases various projects and skills, built with Astro and styled with Tailwind CSS.",
-    link: "https://github.com/dantescur/porta",
-    demoLink: "https://brawny-range.surge.sh",
-    category: "Frontend",
-  },
+  title: "Developer Portfolio",
+  image: "/porta.png", 
+  description: "Modern showcase of my open-source contributions",
+  tags: ["astro", "tailwindcss", "responsive-design", "showcase"],
+  extendedDescription:
+    "A performant portfolio built with Astro and Tailwind CSS, featuring interactive project displays with code snippets and live demos. Designed to highlight my approach to clean, maintainable frontend solutions.",
+  link: "https://github.com/dantescur/porta",
+  demoLink: "https://thedaniweb.eu.org", 
+  category: "Frontend",
+},
   {
-    title: "E-commerce Platform",
-    image: "https://placehold.co/400",
-    description: "A full-featured e-commerce platform with a custom CMS.",
-    tags: ["vue", "node", "graphql"],
+    title: "WebRTC Educational Demo",
+    image: "/webrtc.png",
+    description: "Interactive WebRTC learning tool with P2P streaming.",
+    tags: ["vue", "webrtc", "typescript", "tailwindcss"],
     extendedDescription:
-      "An e-commerce platform with a custom CMS, built using Vue, Node.js, and GraphQL for efficient data management.",
-    link: "https://example.com/e-commerce-platform",
-    demoLink: "https://example.com/e-commerce-platform/demo",
+      "Hands-on demo explaining STUN/TURN servers, SDP offers, and peer connections. Features role-based guided tours and real-time WebRTC event logging.",
+    link: "https://github.com/Dantescur/webrtc-demo",
+    demoLink: "https://webrtc.thedaniweb.eu.org",
     category: "Full Stack",
   },
   {
-    title: "Weather App",
-    image: "https://placehold.co/400",
-    description: "A weather forecasting app with real-time data.",
-    tags: ["vue", "typescript", "api"],
+    title: "N2YO TypeScript Client",
+    image: "/n2yo-ts.png",
+    description: "Type-safe client for satellite tracking API.",
+    tags: ["typescript", "api-client", "axios"],
     extendedDescription:
-      "A weather app providing real-time data and forecasts, built with Vue and TypeScript, utilizing various APIs.",
-    link: "https://example.com/weather-app",
-    demoLink: "https://example.com/weather-app/demo",
-    category: "Frontend",
-  },
-  {
-    title: "Blog Platform",
-    image: "https://placehold.co/400",
-    description: "A customizable blog platform with markdown support.",
-    tags: ["nuxt", "strapi", "tailwind"],
-    extendedDescription:
-      "A blog platform that supports markdown, built with Nuxt.js and Strapi, and styled with Tailwind CSS.",
-    link: "https://example.com/blog-platform",
-    demoLink: "https://example.com/blog-platform/demo",
-    category: "Full Stack",
-  },
-  {
-    title: "Chat Application",
-    image: "https://placehold.co/400",
-    description: "A real-time chat application with WebSocket integration.",
-    tags: ["socket.io", "express", "vue"],
-    extendedDescription:
-      "A chat application that supports real-time communication, built with Socket.io, Express, and Vue.",
-    link: "https://example.com/chat-application",
-    demoLink: "https://example.com/chat-application/demo",
+      "Feature-complete, strongly-typed wrapper for N2YO.com's API with comprehensive documentation and zero-dependency design.",
+    link: "https://github.com/Dantescur/n2yo-ts",
+    demoLink: "",
     category: "Backend",
   },
   {
-    title: "Task Manager",
-    image: "https://placehold.co/400",
-    description: "A task management tool to organize your daily tasks.",
-    tags: ["astro", "firebase", "scss"],
+    title: "Vue OSM Autocomplete",
+    image: "/vue-osm.png",
+    description: "OpenStreetMap location search component for Vue 3.",
+    tags: ["vue3", "openstreetmap", "nominatim", "typescript"],
     extendedDescription:
-      "A task management tool to help organize daily tasks, built with Astro, Firebase, and styled with SCSS.",
-    link: "https://example.com/task-manager",
-    demoLink: "https://example.com/task-manager/demo",
+      "Lightweight, reusable component for address autocomplete using OSM's Nominatim API with customizable templates and debounced queries.",
+    link: "https://github.com/Dantescur/vue-osm-autocomplete",
+    demoLink: "",
+    category: "Frontend",
+  },
+  {
+    title: "netrc-parser (Rust)",
+    image: "/netrc.png",
+    description: ".netrc file parser with manipulation capabilities.",
+    tags: ["rust", "cli", "parser"],
+    extendedDescription:
+      "Zero-copy parser for .netrc credential files with support for file modification and validation.",
+    link: "https://github.com/Dantescur/netrc-parser",
+    demoLink: "",
+    category: "Backend",
+  },
+  {
+    title: "Nuxt Animation Concept",
+    image: "/nuxtanime.png",
+    description: "Interactive animation inspired by NuxtLabs/Vercel.",
+    tags: ["nuxt", "gsap", "animations"],
+    extendedDescription:
+      "Experimental microsite replicating NuxtLabs' announcement page animations using GSAP and Vue composables.",
+    link: "https://github.com/Dantescur/nuxtanime",
+    demoLink: "https://dantescur.github.io/nuxtanime/",
     category: "Frontend",
   },
 ];
 
-const categories = ["Frontend", "Backend", "Full Stack"];
+const categories = ["All","Frontend", "Backend", "Full Stack"];
 ---
 
 <section id="work" class="py-16 sm:py-20">
