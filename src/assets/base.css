@@ -13,12 +13,12 @@
 
 @layer base {
   :root {
-    --color-text: 28 28 28;
-    --color-background: 235 235 235;
-    --color-primary: 160 170 185;
-    --color-accent: 41 128 185;
-    --color-surface: 225 225 225;
-    --color-border: 180 180 180;
+    --color-text: 28 28 28; /* Slightly darker text */
+    --color-background: 245 245 245; /* Brighter background */
+    --color-primary: 180 190 205; /* More visible primary */
+    --color-accent: 41 128 185; /* Keep accent */
+    --color-surface: 255 255 255; /* Pure white surface */
+    --color-border: 200 200 200; /* More visible borders */
   }
 
   .dark {
@@ -63,7 +63,7 @@
     @apply text-sm text-text/70;
   }
   .project-card {
-    @apply bg-surface border border-border/20 hover:border-accent/30 transition-shadow shadow-theme hover:shadow-lg;
+    @apply bg-surface border border-border/60 hover:border-accent/30 transition-shadow shadow-theme hover:shadow-lg;
   }
   .project-image {
     @apply aspect-video overflow-hidden rounded-xl bg-primary/5;
@@ -71,8 +71,12 @@
   .project-overlay {
     @apply absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end;
   }
-  .project-tag {
-    @apply rounded-full bg-primary/10 px-2.5 py-1 text-xs sm:text-sm font-medium text-text hover:bg-accent/10 transition-colors;
+.project-tag {
+    @apply rounded-full bg-primary/15 px-2.5 py-1 text-xs sm:text-sm font-medium text-text/90 hover:bg-accent/15 border border-border/20;
+  }
+  
+  button {
+    @apply border border-border/40 hover:border-accent/50;
   }
 }
 
