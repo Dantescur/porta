@@ -13,7 +13,7 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "http://brawny-range.surge.sh/",
+  site: "https://thedaniweb.eu.org",
   integrations: [
     tailwind(),
     icon({
@@ -24,4 +24,3 @@ export default defineConfig({
     vue(),
   ],
 });
-
