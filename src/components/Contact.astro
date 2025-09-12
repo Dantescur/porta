@@ -66,7 +66,7 @@
     import emailjs from "@emailjs/browser";
 
     emailjs.init({
-      publicKey: "JTViNQYZMni5UHMI2",
+      publicKey: "aIbWJhVe_r-PuJlau",
       blockHeadless: true,
       limitRate: {
         id: "app",
@@ -75,28 +75,57 @@
     });
 
     const form = document.getElementById("contact-form") as HTMLFormElement;
+    const submitBtn = form?.querySelector<HTMLButtonElement>(
+      'button[type="submit"]'
+    );
 
-    if (form) {
+    if (form && submitBtn) {
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const formData = {
-          name: form.senderName.value,
-          email: form.email.value,
-          message: form.message.value,
-        };
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "Sending...";
+
+        if (!form.email.value.includes("@")) {
+          alert("Please enter a valid email address");
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = "Send Message";
+          return;
+        }
 
         try {
           const response = await emailjs.send(
-            "service_5babsc8",
-            "template_05trpbd",
-            formData
+            "service_pyxr4fe",
+            "template_5tbfavo",
+            {
+              name: form.senderName.value,
+              email: form.email.value,
+              message: form.message.value,
+            }
           );
-          alert("Message sent successfully!");
+
+          if (window.toast) {
+            window.toast.success("Message sent successfully!", {
+              title: "Success",
+              duration: 5000,
+            });
+          } else {
+            alert("Message sent successfully!");
+          }
+
           form.reset();
         } catch (error) {
-          console.error("Failed to send message:", error);
-          alert("Failed to send message. Please try again later.");
+          if (window.toast) {
+          window.toast.error("Failed to send message. Please try again.", {
+            title: "Error",
+            duration: 7000
+          });
+        } else {
+          alert("Failed to send message.");
+        }
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = "Send Message";
         }
       });
     }

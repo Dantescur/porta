@@ -10,7 +10,6 @@ const props = defineProps<{
 
 const selectedCategory = ref("All");
 
-
 const filteredProjects = computed(() => {
   if (selectedCategory.value === "All") return props.projects;
   return props.projects.filter(
@@ -25,7 +24,7 @@ const filteredProjects = computed(() => {
       v-for="category in categories"
       :key="category"
       @click="selectedCategory = category"
-      :class="{ 'bg-accent/20': selectedCategory === category }"
+      :class="{ 'bg-accent/40': selectedCategory === category }"
       class="px-4 py-2 rounded-full bg-primary/10 text-sm font-medium hover:bg-accent/10 transition-colors"
     >
       {{ category }}
@@ -36,7 +35,7 @@ const filteredProjects = computed(() => {
     <article
       v-for="project in filteredProjects"
       :key="project.title"
-      class="group relative overflow-hidden rounded-2xl bg-surface p-4 sm:p-6 shadow-theme hover:shadow-lg transition-shadow border border-border/20 hover:border-accent/30"
+      class="group relative overflow-hidden rounded-2xl bg-surface p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow border border-border/20 hover:border-accent/30"
     >
       <div class="aspect-video overflow-hidden rounded-xl bg-primary/5">
         <img
@@ -51,7 +50,7 @@ const filteredProjects = computed(() => {
         class="mt-4 sm:mt-6 group-hover:opacity-0 group-hover:translate-y-2 transition-all duration-300"
       >
         <h3
-          class="text-lg sm:text-xl font-semibold text-text group-hover:text-accent transition-colors"
+          class="text-lg sm:text-xl font-sans text-text group-hover:text-accent transition-colors"
         >
           {{ project.title }}
         </h3>
@@ -64,7 +63,7 @@ const filteredProjects = computed(() => {
           <span
             v-for="(tag, index) in project.tags.slice(0, 6)" 
             :key="index"
-            class="truncate rounded-full bg-primary/10 px-2 py-1 text-xs text-center font-medium text-text hover:bg-accent/10 transition-colors"
+            class="truncate rounded-full bg-accent/10 px-2 py-1 text-xs text-center font-medium text-text hover:bg-accent/10 transition-colors"
             :title="tag"
           >
             {{ tag }}

@@ -1,8 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
-
 import { Image } from "astro:assets"
-
 import jsLogo from "../icons/javascript.svg"
 import tsLogo from "../icons/typescript.svg"
 import htmlLogo from "../icons/html.svg"
@@ -30,7 +27,6 @@ const skills = [
   { name: "Express", level: 85, icon: expressLogo },
   { name: "AdonisJS", level: 75, icon: adonisjsLogo },
 ];
-
 ---
 
 <section id="skills" class="py-16 sm:py-20">
@@ -40,10 +36,13 @@ const skills = [
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-      {skills.map((skill, _index) => (
-        <div class="rounded-xl bg-surface p-4 sm:p-6 border border-border/20 hover:border-accent/30 transition-colors shadow-theme hover:shadow-theme even:bg-primary/5 font-mono">
+      {skills.map((skill, index) => (
+        <div 
+          class="skill-card rounded-xl bg-surface p-4 sm:p-6 border border-border/20 hover:border-accent/30 transition-colors shadow-md hover:shadow-md even:bg-primary/5 font-mono"
+          data-skill-index={index}
+        >
           <div class="flex items-center gap-3 sm:gap-4">
-            <Image src={skill.icon} class="text-2xl sm:text-3xl text-accent" width="60" height="60" alt={skill.name} />
+            <Image src={skill.icon} class="text-2xl sm:text-3xl text-accent skill-icon" width="60" height="60" alt={skill.name} />
             <div class="flex-1">
               <h3 class="text-base sm:text-lg font-medium text-text">
                 {skill.name}
@@ -53,11 +52,12 @@ const skills = [
               <div class="mt-2 flex items-center justify-between">
                 <div class="h-2 w-[calc(100%-3rem)] rounded-full bg-primary/10">
                   <div
-                    class="h-full rounded-full bg-gradient-to-r from-accent/80 to-accent transition-all duration-1000"
-                    style={`width: ${skill.level}%`}
-                    data-skill-level
+                    class="h-full rounded-full bg-gradient-to-r from-accent/80 to-accent skill-progress"
+                    style={`width: 0%`}
+                    data-skill-level={skill.level}
                   />
                 </div>
+                <span class="text-xs font-medium text-text/70 ml-2 skill-percentage">{skill.level}%</span>
               </div>
             </div>
           </div>
@@ -66,3 +66,97 @@ const skills = [
     </div>
   </div>
 </section>
+
+<script>
+  // Load GSAP from CDN
+  import { gsap } from "gsap";
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const skillCards = document.querySelectorAll('.skill-card');
+    const skillProgressBars = document.querySelectorAll<HTMLDivElement>('.skill-progress');
+    const skillIcons = document.querySelectorAll('.skill-icon');
+    const skillPercentages = document.querySelectorAll('.skill-percentage');
+    
+    // Set up Intersection Observer to trigger animations when skills come into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const skillCard = entry.target;
+          const index = parseInt(skillCard.getAttribute('data-skill-index')!);
+          const progressBar = skillProgressBars[index];
+          const icon = skillIcons[index];
+          const percentage = skillPercentages[index];
+          const skillLevel = parseInt(progressBar.getAttribute('data-skill-level')!);
+          
+          // Animate the progress bar
+          gsap.to(progressBar, {
+            width: `${skillLevel}%`,
+            duration: 1.5,
+            ease: "power2.out",
+            delay: index * 0.1 // Stagger the animations
+          });
+          
+          // Animate the percentage counter
+          gsap.to(percentage, {
+            innerText: skillLevel,
+            duration: 1.5,
+            snap: { innerText: 1 },
+            delay: index * 0.1,
+            onUpdate: function() {
+              percentage.textContent = Math.round(this.targets()[0].innerText) + "%";
+            }
+          });
+          
+          // Add a subtle bounce animation to the icon
+          gsap.fromTo(icon, 
+            { scale: 0.8, opacity: 0.5 },
+            { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }
+          );
+          
+          // Stop observing after animation has been triggered
+          observer.unobserve(skillCard);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    // Observe each skill card
+    skillCards.forEach(card => observer.observe(card));
+    
+    // Add hover animations
+    skillCards.forEach((card, index) => {
+      const progressBar = skillProgressBars[index];
+      const originalWidth = progressBar.style.width;
+      
+      card.addEventListener('mouseenter', () => {
+        gsap.to(progressBar, {
+          scaleY: 1.2,
+          duration: 0.3,
+          ease: "power1.out"
+        });
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        gsap.to(progressBar, {
+          scaleY: 1,
+          duration: 0.3,
+          ease: "power1.in"
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .skill-progress {
+    transform-origin: left center;
+  }
+  
+  .skill-card {
+    transition: all 0.3s ease;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+</style>
