@@ -103,26 +103,11 @@
               message: form.message.value,
             }
           );
-
-          if (window.toast) {
-            window.toast.success("Message sent successfully!", {
-              title: "Success",
-              duration: 5000,
-            });
-          } else {
-            alert("Message sent successfully!");
-          }
+          alert("Message sent successfully!");
 
           form.reset();
         } catch (error) {
-          if (window.toast) {
-          window.toast.error("Failed to send message. Please try again.", {
-            title: "Error",
-            duration: 7000
-          });
-        } else {
           alert("Failed to send message.");
-        }
         } finally {
           submitBtn.disabled = false;
           submitBtn.innerHTML = "Send Message";
