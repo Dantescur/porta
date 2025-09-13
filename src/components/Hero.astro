@@ -1,70 +1,199 @@
 ---
 import { Icon } from "astro-icon/components";
+
 ---
 
-<section class="min-h-[calc(100vh-80px)] flex items-center">
-  <div class="container px-6 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center justify-between">
-    <!-- Left Side: Content -->
-    <div class="max-w-2xl lg:max-w-4xl font-sans text-center lg:text-left">
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl/none font-bold tracking-tight">
-        <span class="block text-text">Hi, I'm</span>
-        <span class="gradient-text block mt-2 sm:mt-3">Cesar Daniel</span>
-      </h1>
-      <p class="mt-4 sm:mt-6 text-base sm:text-lg lg:text-xl text-text/80 leading-relaxed">
-        Self-taught developer passionate about clean APIs, interactive UIs, and solving real-world problems
-      </p>
-      <div class="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 font-mono">
-        <a
-          href="#work"
-          class="w-full sm:w-auto text-center rounded-lg bg-accent px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold text-surface shadow-md hover:bg-accent/90"
-        >
-          See My Work
-        </a>
-        <a
-          href="https://github.com/Dantescur" 
-          target="_blank"
-          class="w-full sm:w-auto text-center rounded-lg border border-border px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold text-text shadow-md hover:bg-surface flex items-center justify-center gap-2"
-        >
-          <Icon name="mdi:github" class="w-5 h-5" />
-          GitHub
-        </a>
-      </div>
-    </div>
+<section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+  <div class="container mx-auto px-6 sm:px-8 lg:px-12 max-w-7xl">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+      
+      <!-- Left Side: Main Content -->
+      <div class="lg:col-span-3 text-center lg:text-left space-y-6 sm:space-y-8">
+        <div class="space-y-4">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+            <span class="block text-text animate-fade-in">Hi, I'm</span>
+            <span class="text-accent block mt-2 sm:mt-3 animate-fade-in-up">
+              Cesar Daniel
+            </span>
+          </h1>
+          
+          <div class="max-w-2xl mx-auto lg:mx-0">
+            <p class="text-lg sm:text-xl lg:text-2xl text-text/80 leading-relaxed animate-fade-in-delayed">
+              Self-taught developer passionate about clean APIs, interactive UIs, and solving real-world problems
+            </p>
+          </div>
+        </div>
 
-    <!-- Right Side: Strengths -->
-    <div class="hidden lg:block w-1/3 p-4 bg-surface/50 rounded-lg shadow-lg stats-section">
-      <ul class="space-y-4 text-text/80">
-        <li class="flex items-start gap-2">
-          <Icon name="heroicons:bolt-20-solid" class="w-5 h-5 text-accent mt-7 flex-shrink-0" />
-          <span class="text-gray-400">
-            <span class="text-text">API Specialist</span><br>
-            Built SDKs for  N2YO and TMDB
-          </span>
-        </li>
-        <li class="flex items-start gap-2">
-          <Icon name="heroicons:code-bracket-20-solid" class="w-5 h-5 text-accent mt-7 flex-shrink-0" />
-          <span class="text-gray-400">
-            <span class="text-text">Tech Explorer</span><br>
-            From Vue animations to Rust parsers
-          </span>
-        </li>
-        <li class="flex items-start gap-2">
-          <Icon name="heroicons:academic-cap-20-solid" class="w-5 h-5 text-accent mt-7 flex-shrink-0" />
-          <span class="text-gray-400">
-            <span class="text-text">Self-Taught</span><br>
-            Learned through docs, experiments, and shipping real projects
-          </span>
-        </li>
-      </ul>
+        <!-- Call-to-Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-delayed">
+          <a
+            href="#work"
+            class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base font-semibold rounded-xl bg-accent text-background shadow-lg hover:bg-accent/90 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+            aria-label="View my portfolio projects"
+          >
+            <Icon name="heroicons:eye-20-solid" class="w-5 h-5 mr-2" />
+            See My Work
+          </a>
+          
+          <a
+            href="https://github.com/Dantescur"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base font-semibold rounded-xl border-2 border-border text-text shadow-lg hover:border-accent hover:text-accent hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+            aria-label="Visit my GitHub profile (opens in new tab)"
+          >
+            <Icon name="devicon:github" class="w-5 h-5 mr-2" />
+            GitHub Profile
+          </a>
+        </div>
+
+        <!-- Quick Stats - Mobile Visible -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8 lg:hidden">
+          <div class="text-center p-4 rounded-lg bg-surface/50 border border-border/20">
+            <div class="text-2xl font-bold text-accent">6+</div>
+            <div class="text-sm text-text/70">Projects</div>
+          </div>
+          <div class="text-center p-4 rounded-lg bg-surface/50 border border-border/20">
+            <div class="text-2xl font-bold text-accent">4+</div>
+            <div class="text-sm text-text/70">Languages</div>
+          </div>
+          <div class="text-center p-4 rounded-lg bg-surface/50 border border-border/20 col-span-2 sm:col-span-1">
+            <div class="text-2xl font-bold text-accent">5+</div>
+            <div class="text-sm text-text/70">Years</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Detailed Strengths -->
+      <div class="lg:col-span-2 space-y-6">
+        <div class="bg-surface/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-border/20 shadow-lg">
+          <h2 class="text-xl font-semibold text-text mb-6 flex items-center gap-2">
+            <Icon name="heroicons:star-20-solid" class="w-5 h-5 text-accent" />
+            What I Bring
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                <Icon name="heroicons:bolt-20-solid" class="w-6 h-6 text-accent" />
+              </div>
+              <div class="flex-1">
+                <h3 class="font-semibold text-text mb-1">API Specialist</h3>
+                <p class="text-sm text-text/70">
+                  Built production-ready SDKs for N2YO satellite tracking and TMDB movie database
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                <Icon name="heroicons:code-bracket-20-solid" class="w-6 h-6 text-accent" />
+              </div>
+              <div class="flex-1">
+                <h3 class="font-semibold text-text mb-1">Full-Stack Explorer</h3>
+                <p class="text-sm text-text/70">
+                  From Vue.js animations to Rust parsers - I love learning new technologies
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                <Icon name="heroicons:academic-cap-20-solid" class="w-6 h-6 text-accent" />
+              </div>
+              <div class="flex-1">
+                <h3 class="font-semibold text-text mb-1">Self-Directed Learning</h3>
+                <p class="text-sm text-text/70">
+                  Mastered development through documentation, experimentation, and real projects
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                <Icon name="heroicons:puzzle-piece-20-solid" class="w-6 h-6 text-accent" />
+              </div>
+              <div class="flex-1">
+                <h3 class="font-semibold text-text mb-1">Problem Solver</h3>
+                <p class="text-sm text-text/70">
+                  I thrive on turning complex challenges into elegant, maintainable solutions
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Quick Access -->
+        <div class="bg-primary/5 rounded-2xl p-6 border border-border/10 sm:hidden">
+          <div class="text-center space-y-3">
+            <p class="text-sm font-medium text-text">Ready to collaborate?</p>
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 text-sm text-accent hover:text-accent/80 transition-colors font-medium"
+            >
+              <Icon name="heroicons:chat-bubble-left-right-20-solid" class="w-4 h-4" />
+              Get in touch
+              <Icon name="heroicons:arrow-right-20-solid" class="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .stats-section li strong {
-    background: linear-gradient(90deg, var(--color-accent), var(--color-text));
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent), color-mix(in oklch, var(--color-accent) 80%));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  /* Animation keyframes */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out 0.2s both;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out 0.4s both;
+  }
+
+  .animate-fade-in-delayed {
+    animation: fade-in 0.8s ease-out 0.6s both;
+  }
+
+  /* Enhanced button hover effects */
+  .hover\:-translate-y-0\.5:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .grid-cols-1 {
+      gap: 3rem;
+    }
   }
 </style>

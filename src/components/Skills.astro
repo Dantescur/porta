@@ -1,162 +1,182 @@
 ---
-import { Image } from "astro:assets"
-import jsLogo from "../icons/javascript.svg"
-import tsLogo from "../icons/typescript.svg"
-import htmlLogo from "../icons/html.svg"
-import cssLogo from "../icons/css.svg"
-import nodeJsLogo from "../icons/nodejs.svg"
-import gitLogo from "../icons/git.svg"
-import astroLogo from "../icons/astro.svg"
-import tailwindLogo from "../icons/tailwind.svg"
-import vueLogo from "../icons/vue.svg"
-import postgresLogo from "../icons/postgres.svg"
-import expressLogo from "../icons/express.svg"
-import adonisjsLogo from "../icons/adonisjs.svg"
-
-const skills = [
-  { name: "JavaScript", level: 80, icon: jsLogo },
-  { name: "TypeScript", level: 90, icon: tsLogo },
-  { name: "HTML", level: 95, icon: htmlLogo },
-  { name: "CSS", level: 80, icon: cssLogo },
-  { name: "Node.js", level: 70, icon: nodeJsLogo },
-  { name: "Git", level: 85, icon: gitLogo },
-  { name: "Astro", level: 75, icon: astroLogo },
-  { name: "Tailwind", level: 65, icon: tailwindLogo },
-  { name: "Vue", level: 90, icon: vueLogo },
-  { name: "Postgres", level: 60, icon: postgresLogo },
-  { name: "Express", level: 85, icon: expressLogo },
-  { name: "AdonisJS", level: 75, icon: adonisjsLogo },
-];
+import { Icon } from "astro-icon/components";
+const skillCategories = {
+  Frontend: [
+    { name: "TypeScript", icon: 'devicon:typescript', site: 'https://www.typescriptlang.org' },
+    { name: "Vue", icon: 'devicon:vuejs', site: 'https://vuejs.org' },
+    { name: "JavaScript", icon: 'devicon:javascript', site: 'https://developer.mozilla.org/en-US/site/Web/JavaScript' },
+    { name: "HTML", icon: 'devicon:html5', site: 'https://developer.mozilla.org/en-US/site/Web/HTML' },
+    { name: "CSS", icon: 'devicon:css3', site: 'https://developer.mozilla.org/en-US/site/Web/CSS' },
+    { name: "Tailwind", icon: 'devicon:tailwindcss', site: 'https://tailwindcss.com' },
+    { name: "Astro", icon: 'devicon:astro', site: 'https://astro.build' },
+  ],
+  Backend: [
+    { name: "Node.js", icon: 'devicon:nodejs', site: 'https://nodejs.org/en' },
+    { name: "Express", icon: 'devicon:express', site: 'https://expressjs.com' },
+    { name: "AdonisJS", icon: 'devicon:adonisjs', site: 'https://adonisjs.com' },
+    { name: "PostgreSQL", icon: 'devicon:postgresql', site: 'https://www.postgresql.org' },
+  ],
+  Tools: [
+    { name: "Git", icon: 'devicon:git', site: 'https://git-scm.com' },
+    { name: "GitHub", icon: 'devicon:github', site: 'https://github.com' },
+    { name: "Docker", icon: 'devicon:docker', site: 'https://docker.com' },
+    { name: "Vite", icon: 'devicon:vitejs', site: 'https://vitejs.dev' },
+    { name: "VS Code", icon: 'devicon:vscode', site: 'https://code.visualstudio.com' },
+    { name: 'Neovim', icon: 'devicon:neovim', site: 'https://neovim.io'}
+  ],
+};
 ---
 
 <section id="skills" class="py-16 sm:py-20">
-  <div class="container px-6 sm:px-8 lg:px-12">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 gradient-text text-center">
-      Technical Arsenal
+  <div class="container mx-auto px-6 sm:px-8 lg:px-12">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-accent text-center">
+      Technical Skills
     </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-      {skills.map((skill, index) => (
-        <div 
-          class="skill-card rounded-xl bg-surface p-4 sm:p-6 border border-border/20 hover:border-accent/30 transition-colors shadow-md hover:shadow-md even:bg-primary/5 font-mono"
-          data-skill-index={index}
-        >
-          <div class="flex items-center gap-3 sm:gap-4">
-            <Image src={skill.icon} class="text-2xl sm:text-3xl text-accent skill-icon" width="60" height="60" alt={skill.name} />
-            <div class="flex-1">
-              <h3 class="text-base sm:text-lg font-medium text-text">
-                {skill.name}
-              </h3>
-              
-              <!-- Skill Progress with Percentage -->
-              <div class="mt-2 flex items-center justify-between">
-                <div class="h-2 w-[calc(100%-3rem)] rounded-full bg-primary/10">
-                  <div
-                    class="h-full rounded-full bg-gradient-to-r from-accent/80 to-accent skill-progress"
-                    style={`width: 0%`}
-                    data-skill-level={skill.level}
+    {Object.entries(skillCategories).map(([category, skills]) => (
+      <div class="mb-16 last:mb-0">
+        <h3 class="text-xl sm:text-2xl font-semibold text-text mb-8 text-center border-b border-border/20 pb-4">
+          {category}
+        </h3>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 sm:gap-8 justify-items-center">
+          {skills.map((skill, index) => (
+            <div
+              class="skill-card group relative rounded-xl bg-surface p-6 border border-border/20 hover:border-accent/40 transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-2 w-full max-w-[140px]"
+              data-skill-index={`${category}-${index}`}
+              role="article"
+              aria-labelledby={`skill-${category}-${index}-name`}
+            >
+              <a 
+                href={skill.site} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex flex-col items-center justify-center gap-4 h-full text-center"
+              >
+                <div class="skill-icon-wrapper flex items-center justify-center">
+                  <Icon
+                    name={skill.icon}
+                    class="w-12 h-12 sm:w-14 sm:h-14 skill-icon transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                    width="56"
+                    height="56"
                   />
                 </div>
-                <span class="text-xs font-medium text-text/70 ml-2 skill-percentage">{skill.level}%</span>
-              </div>
+
+                <div class="w-full">
+                  <h4
+                    id={`skill-${category}-${index}-name`}
+                    class="text-sm sm:text-base font-medium font-mono text-text leading-tight"
+                  >
+                    {skill.name}
+                  </h4>
+                </div>
+              </a>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
   </div>
 </section>
 
 <script>
-  // Load GSAP from CDN
   import { gsap } from "gsap";
-  
-  document.addEventListener('DOMContentLoaded', () => {
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initSkillAnimations() {
     const skillCards = document.querySelectorAll('.skill-card');
-    const skillProgressBars = document.querySelectorAll<HTMLDivElement>('.skill-progress');
-    const skillIcons = document.querySelectorAll('.skill-icon');
-    const skillPercentages = document.querySelectorAll('.skill-percentage');
     
-    // Set up Intersection Observer to trigger animations when skills come into view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const skillCard = entry.target;
-          const index = parseInt(skillCard.getAttribute('data-skill-index')!);
-          const progressBar = skillProgressBars[index];
-          const icon = skillIcons[index];
-          const percentage = skillPercentages[index];
-          const skillLevel = parseInt(progressBar.getAttribute('data-skill-level')!);
-          
-          // Animate the progress bar
-          gsap.to(progressBar, {
-            width: `${skillLevel}%`,
-            duration: 1.5,
-            ease: "power2.out",
-            delay: index * 0.1 // Stagger the animations
-          });
-          
-          // Animate the percentage counter
-          gsap.to(percentage, {
-            innerText: skillLevel,
-            duration: 1.5,
-            snap: { innerText: 1 },
-            delay: index * 0.1,
-            onUpdate: function() {
-              percentage.textContent = Math.round(this.targets()[0].innerText) + "%";
-            }
-          });
-          
-          // Add a subtle bounce animation to the icon
-          gsap.fromTo(icon, 
-            { scale: 0.8, opacity: 0.5 },
-            { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }
-          );
-          
-          // Stop observing after animation has been triggered
-          observer.unobserve(skillCard);
+    gsap.set('.skill-card', { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.9 
+    });
+    
+    skillCards.forEach((card, index) => {
+      const icon = card.querySelector('.skill-icon');
+      
+      gsap.to(card, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+          end: 'bottom 60%',
+          toggleActions: 'play none none none',
         }
       });
-    }, { threshold: 0.3 });
-    
-    // Observe each skill card
-    skillCards.forEach(card => observer.observe(card));
-    
-    // Add hover animations
-    skillCards.forEach((card, index) => {
-      const progressBar = skillProgressBars[index];
-      const originalWidth = progressBar.style.width;
-      
+
       card.addEventListener('mouseenter', () => {
-        gsap.to(progressBar, {
-          scaleY: 1.2,
+        gsap.to(icon, {
+          scale: 1.2,
+          rotation: 12,
           duration: 0.3,
-          ease: "power1.out"
+          ease: "power2.out"
         });
       });
       
       card.addEventListener('mouseleave', () => {
-        gsap.to(progressBar, {
-          scaleY: 1,
+        gsap.to(icon, {
+          scale: 1,
+          rotation: 0,
           duration: 0.3,
-          ease: "power1.in"
+          ease: "power2.out"
         });
       });
     });
-  });
+  }
+  
+  document.addEventListener('DOMContentLoaded', initSkillAnimations);
 </script>
 
 <style>
-  .skill-progress {
-    transform-origin: left center;
-  }
-  
   .skill-card {
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 120px;
   }
-  
+
   .skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .skill-icon-wrapper {
+    position: relative;
+  }
+
+  .skill-icon-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.15) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .skill-card:hover .skill-icon-wrapper::after {
+    opacity: 1;
+  }
+
+  .skill-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .skill-card a:focus {
+    outline: 2px solid rgba(99, 102, 241, 0.5);
+    outline-offset: 2px;
+    border-radius: 0.75rem;
   }
 </style>

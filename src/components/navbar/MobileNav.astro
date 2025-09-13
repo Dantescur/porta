@@ -5,41 +5,27 @@ const links = props.links as { name: string; href: string }[];
 ---
 
 <div
-  class="md:hidden hidden transition-all duration-300 ease-in-out"
+  class="md:hidden hidden transition-all duration-300 ease-in-out backdrop-blur-md border-t border-border/20"
   id="mobile-menu"
 >
-  <div class="px-4 pt-2 pb-4 space-y-2">
+  <div class="px-4 pt-2 pb-4 space-y-1">
     {
       links.map((link) => (
         <a
           href={link.href}
-          class="block px-4 py-2 text-sm text-text hover:bg-primary/10 rounded-lg"
+          class="mobile-nav-link block px-4 py-3 text-base text-text hover:bg-accent/10 hover:text-accent rounded-xl transition-all duration-300 font-medium border border-transparent hover:border-accent/20"
         >
           {link.name}
         </a>
       ))
     }
-    <!-- Mobile Theme Toggle -->
-    <div class="pt-4 border-t border-border/20">
-      <button
-        id="mobile-theme-toggle"
-        aria-label="Toggle dark mode"
-        class="w-full flex items-center justify-between px-4 py-2 text-sm text-text hover:bg-primary/10 rounded-lg"
-      >
-        <span>Theme</span>
-        <div class="flex items-center gap-2">
-          <Icon
-            name="heroicons:sun-20-solid"
-            class="w-5 h-5 hidden dark:block"
-            aria-hidden="true"
-          />
-          <Icon
-            name="heroicons:moon-20-solid"
-            class="w-5 h-5 block dark:hidden"
-            aria-hidden="true"
-          />
-        </div>
-      </button>
-    </div>
   </div>
 </div>
+
+<style>
+  .mobile-nav-link.active {
+    background-color: rgba(var(--color-accent), 0.1);
+    color: rgb(var(--color-accent));
+    border-color: rgba(var(--color-accent), 0.2);
+  }
+</style>

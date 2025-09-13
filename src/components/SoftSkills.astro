@@ -1,0 +1,221 @@
+---
+import { Icon } from "astro-icon/components";
+
+const softSkills = [
+  {
+    title: "Self-Taught Learner",
+    description: "Passionate about continuous learning and exploring new technologies independently",
+    icon: "lucide:book-open",
+    color: "from-purple-500 to-indigo-600"
+  },
+  {
+    title: "Problem Solver",
+    description: "Love breaking down complex challenges into manageable solutions",
+    icon: "lucide:lightbulb",
+    color: "from-amber-500 to-orange-600"
+  },
+  {
+    title: "Proactive Mindset",
+    description: "Always looking for opportunities to improve and take initiative",
+    icon: "lucide:target",
+    color: "from-green-500 to-emerald-600"
+  },
+  {
+    title: "Adaptable",
+    description: "Quick to adapt to new environments, tools, and methodologies",
+    icon: "lucide:shuffle",
+    color: "from-blue-500 to-cyan-600"
+  },
+  {
+    title: "Team Player",
+    description: "Eager to collaborate and learn from experienced developers",
+    icon: "lucide:users",
+    color: "from-pink-500 to-rose-600"
+  },
+  {
+    title: "Growth Oriented",
+    description: "Committed to personal and professional development every day",
+    icon: "lucide:trending-up",
+    color: "from-teal-500 to-green-600"
+  }
+];
+---
+
+<section id="soft-skills" class="py-16 sm:py-20 bg-background/50">
+  <div class="container mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="text-center mb-12 sm:mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-accent">
+        What I Bring to the Team
+      </h2>
+      <p class="text-lg text-text/80 max-w-2xl mx-auto leading-relaxed">
+        While I'm early in my career journey, I'm driven by curiosity and a genuine passion for creating meaningful solutions through code.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {softSkills.map((skill, index) => (
+        <div
+          class="soft-skill-card group relative rounded-2xl bg-surface p-6 sm:p-8 border border-border/20 hover:border-accent/30 transition-all duration-500 shadow-lg hover:shadow-xl overflow-hidden"
+          data-skill-index={index}
+        >
+          <div class={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+          
+          <div class="relative mb-6">
+            <div class={`w-16 h-16 rounded-xl bg-gradient-to-br ${skill.color} p-4 soft-skill-icon shadow-lg`}>
+              <Icon
+                name={skill.icon}
+                class="w-full h-full text-white"
+                width="32"
+                height="32"
+              />
+            </div>
+          </div>
+
+          <div class="relative z-10">
+            <h3 class="text-xl sm:text-2xl font-bold text-text mb-3 group-hover:text-accent transition-colors duration-300">
+              {skill.title}
+            </h3>
+            
+            <p class="text-text/70 leading-relaxed text-sm sm:text-base">
+              {skill.description}
+            </p>
+          </div>
+
+          <div class="absolute -right-4 -bottom-4 w-24 h-24 rounded-full bg-accent/5 group-hover:bg-accent/10 transition-colors duration-500"></div>
+          <div class="absolute -right-2 -bottom-2 w-12 h-12 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500"></div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-16 sm:mt-20">
+      <div class="inline-block p-8 rounded-2xl bg-gradient-to-r from-accent/10 to-primary/10 border border-accent/20">
+        <h3 class="text-2xl sm:text-3xl font-bold text-text mb-4">
+          Ready to Learn & Contribute
+        </h3>
+        <p class="text-text/80 text-lg max-w-lg mx-auto leading-relaxed">
+          I'm excited to bring fresh perspectives and boundless enthusiasm to your development team.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initSoftSkillsAnimations() {
+    const skillCards = document.querySelectorAll('.soft-skill-card');
+    
+    // Set initial state
+    gsap.set('.soft-skill-card', {
+      opacity: 0,
+      y: 50,
+      scale: 0.95
+    });
+
+    gsap.set('.soft-skill-icon', {
+      scale: 0,
+      rotation: -180
+    });
+
+    // Animate cards on scroll
+    skillCards.forEach((card, index) => {
+      const icon = card.querySelector('.soft-skill-icon');
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          end: 'bottom 60%',
+          toggleActions: 'play none none none',
+        }
+      });
+
+      tl.to(card, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        delay: index * 0.15,
+        ease: "back.out(1.7)"
+      })
+      .to(icon, {
+        scale: 1,
+        rotation: 0,
+        duration: 0.6,
+        ease: "back.out(2)"
+      }, "-=0.4");
+
+      // Hover animations
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, {
+          y: -8,
+          scale: 1.02,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+        
+        gsap.to(icon, {
+          scale: 1.1,
+          rotation: 5,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          y: 0,
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+        
+        gsap.to(icon, {
+          scale: 1,
+          rotation: 0,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+    });
+
+    ScrollTrigger.refresh();
+  }
+
+  document.addEventListener('DOMContentLoaded', initSoftSkillsAnimations);
+  // window.addEventListener('load', () => {
+  //   ScrollTrigger.refresh();
+  // });
+</script>
+
+<style>
+  .soft-skill-card {
+    backdrop-filter: blur(10px);
+  }
+
+  .soft-skill-card:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  .soft-skill-icon {
+    transform-origin: center;
+  }
+
+  #soft-skills {
+    position: relative;
+  }
+
+  #soft-skills::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+  }
+</style>

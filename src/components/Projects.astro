@@ -15,7 +15,7 @@ export interface Project {
 const projects: Project[] = [
   {
   title: "Developer Portfolio",
-  image: "/porta.png", 
+  image: "/porta.avif", 
   description: "Modern showcase of my open-source contributions",
   tags: ["astro", "tailwindcss", "responsive-design", "showcase"],
   extendedDescription:
@@ -26,7 +26,7 @@ const projects: Project[] = [
 },
   {
     title: "WebRTC Educational Demo",
-    image: "/webrtc.png",
+    image: "/webrtc.avif",
     description: "Interactive WebRTC learning tool with P2P streaming.",
     tags: ["vue", "webrtc", "typescript", "tailwindcss"],
     extendedDescription:
@@ -37,7 +37,7 @@ const projects: Project[] = [
   },
   {
     title: "N2YO TypeScript Client",
-    image: "/n2yo-ts.png",
+    image: "/n2yo-ts.avif",
     description: "Type-safe client for satellite tracking API.",
     tags: ["typescript", "api-client", "axios"],
     extendedDescription:
@@ -48,7 +48,7 @@ const projects: Project[] = [
   },
   {
     title: "Vue OSM Autocomplete",
-    image: "/vue-osm.png",
+    image: "/vue-osm.avif",
     description: "OpenStreetMap location search component for Vue 3.",
     tags: ["vue3", "openstreetmap", "nominatim", "typescript"],
     extendedDescription:
@@ -59,7 +59,7 @@ const projects: Project[] = [
   },
   {
     title: "netrc-parser (Rust)",
-    image: "/netrc.png",
+    image: "/netrc.avif",
     description: ".netrc file parser with manipulation capabilities.",
     tags: ["rust", "cli", "parser"],
     extendedDescription:
@@ -70,7 +70,7 @@ const projects: Project[] = [
   },
   {
     title: "Nuxt Animation Concept",
-    image: "/nuxtanime.png",
+    image: "/nuxtanime.avif",
     description: "Interactive animation inspired by NuxtLabs/Vercel.",
     tags: ["nuxt", "gsap", "animations"],
     extendedDescription:
@@ -85,13 +85,13 @@ const categories = ["All","Frontend", "Backend", "Full Stack"];
 ---
 
 <section id="work" class="py-16 sm:py-20">
-  <div class="container px-6 sm:px-8 lg:px-12">
+  <div class="container mx-auto px-6 sm:px-8 lg:px-12">
     <h2
-      class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 gradient-text text-center"
+      class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-accent text-center"
     >
       Featured Work
     </h2>
 
-    <ProjectGrid projects={projects} categories={categories} client:load />
+    <ProjectGrid projects={projects} categories={categories} client:visible />
   </div>
 </section>

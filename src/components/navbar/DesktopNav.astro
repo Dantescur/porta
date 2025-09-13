@@ -9,27 +9,26 @@ const links = props.links as { name: string; href: string }[];
     links.map((link) => (
       <a
         href={link.href}
-        class="text-sm lg:text-base text-accent hover:text-accent/80 transition-colors"
+        class="nav-link relative text-sm lg:text-base text-text hover:text-accent transition-all duration-300 font-medium group"
       >
         {link.name}
+        <!-- Underline animation -->
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
       </a>
     ))
   }
-  <!-- Theme Toggle -->
-  <button
-    id="theme-toggle"
-    aria-label="Toggle dark mode"
-    class="ml-2 lg:ml-4 p-2 rounded-lg hover:bg-primary/10 transition-colors"
-  >
-    <Icon
-      name="heroicons:sun-20-solid"
-      class="w-5 h-5 lg:w-6 lg:h-6 hidden dark:block"
-      aria-hidden="true"
-    />
-    <Icon
-      name="heroicons:moon-20-solid"
-      class="w-5 h-5 lg:w-6 lg:h-6 block dark:hidden"
-      aria-hidden="true"
-    />
-  </button>
 </div>
+
+<style>
+  .nav-link.active {
+    color: rgb(var(--color-accent));
+  }
+  
+  .nav-link.active span {
+    width: 100%;
+  }
+  
+  .nav-link:hover {
+    transform: translateY(-1px);
+  }
+</style>
